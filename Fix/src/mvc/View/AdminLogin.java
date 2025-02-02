@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 public class AdminLogin extends javax.swing.JFrame {
      private Point initialClick;
@@ -107,6 +108,11 @@ public class AdminLogin extends javax.swing.JFrame {
         btnSignin.setFocusable(false);
         btnSignin.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnSignin.setRound(50);
+        btnSignin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSigninMouseClicked(evt);
+            }
+        });
         btnSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSigninActionPerformed(evt);
@@ -392,6 +398,26 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         setState(AdminLogin.ICONIFIED);
     }//GEN-LAST:event_btnMinimizeMouseClicked
+
+    private void btnSigninMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSigninMouseClicked
+        // TODO add your handling code here:
+		String email = txtEmail.getText();
+		String password = new String(txtPassword.getPassword());
+
+		if(email.isEmpty() && password.isEmpty()){
+			JOptionPane.showMessageDialog(this, "can't be empty field!!");
+			return;
+		}
+
+
+		if(email.equals("admin@gmail.com") && password.equals("12345")){
+			new AdminDashboard().setVisible(true);
+			this.dispose();
+		}else {
+			JOptionPane.showMessageDialog(this, "can't login invalid!!");
+		}
+		
+    }//GEN-LAST:event_btnSigninMouseClicked
 
     /**
      * @param args the command line arguments
